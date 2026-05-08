@@ -264,55 +264,121 @@ MISSION_CONTROL_HTML = """<!DOCTYPE html>
 <title>Mission Control — Hermes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0b1020;color:#e5ebff;font-family:'IBM Plex Sans',sans-serif;min-height:100vh}
-.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 40px}
+body{background:
+  radial-gradient(circle at 50% 0%, rgba(124,140,255,.16), transparent 30%),
+  radial-gradient(circle at 15% 22%, rgba(135,255,196,.08), transparent 18%),
+  linear-gradient(180deg,#0a1020 0%, #0c1430 45%, #09101d 100%);
+  color:#e5ebff;font-family:'IBM Plex Sans',sans-serif;min-height:100vh;position:relative;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:
+  repeating-linear-gradient(180deg, rgba(255,255,255,.03) 0 1px, transparent 1px 4px),
+  repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 1px, transparent 1px 52px);
+  opacity:.12;mix-blend-mode:screen}
+body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:260px;pointer-events:none;background:
+  radial-gradient(circle at 18% 28%, rgba(126,255,188,.10), transparent 18%),
+  radial-gradient(circle at 78% 22%, rgba(124,140,255,.10), transparent 20%),
+  radial-gradient(circle at 50% 72%, rgba(255,210,122,.08), transparent 18%);}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 20px 40px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}
-.brand{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#8ea0ff}
+.brand{font-family:'Press Start 2P','IBM Plex Mono',monospace;font-size:11px;line-height:1.55;letter-spacing:.08em;text-transform:uppercase;color:#8ea0ff}
 .brand b{color:#fff}
-.pill{border:1px solid rgba(142,160,255,.28);background:rgba(142,160,255,.08);padding:8px 12px;border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#cdd6ff}
-.hero{display:grid;grid-template-columns:1.5fr .9fr;gap:18px;margin-bottom:18px}
-.card{background:linear-gradient(180deg,rgba(14,19,37,.95),rgba(10,14,26,.96));border:1px solid rgba(142,160,255,.18);border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
-.hero-left{padding:28px}
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#97a8ff;letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
-h1{font-size:42px;line-height:1.02;margin-bottom:12px;letter-spacing:-.03em}
-.subtitle{font-size:16px;line-height:1.7;color:#b8c4f5;max-width:58ch;margin-bottom:20px}
+.pill{border:1px solid rgba(142,160,255,.28);background:rgba(142,160,255,.08);padding:8px 12px;border-radius:999px;font-family:'Press Start 2P','IBM Plex Mono',monospace;font-size:10px;line-height:1.45;color:#cdd6ff}
+.hero{display:grid;grid-template-columns:1.12fr .88fr;gap:18px;margin-bottom:18px}
+.card{background:linear-gradient(180deg,rgba(17,23,44,.98),rgba(10,14,26,.98));border:1px solid rgba(142,160,255,.18);border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03)}
+.hero-left{padding:30px}
+.eyebrow{font-family:'Press Start 2P','IBM Plex Mono',monospace;font-size:10px;line-height:1.55;color:#97a8ff;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+h1{font-size:44px;line-height:1.03;margin-bottom:12px;letter-spacing:-.04em}
+.subtitle{font-size:16px;line-height:1.75;color:#b8c4f5;max-width:58ch;margin-bottom:20px}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 14px;border-radius:12px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.04em}
-.btn.primary{background:#7c8cff;color:#07101f}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 14px;border-radius:12px;text-decoration:none;font-family:'Press Start 2P','IBM Plex Mono',monospace;font-size:10px;line-height:1.4;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.btn.primary{background:linear-gradient(180deg,#9fb0ff,#7488ff);color:#081225}
 .btn.secondary{border:1px solid rgba(142,160,255,.3);background:rgba(255,255,255,.02);color:#e5ebff}
+.btn.secondary:hover{background:rgba(124,140,255,.12)}
 .hero-right{padding:22px}
-.stat{padding:16px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(142,160,255,.12);margin-bottom:12px}
-.stat-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#92a3ff;margin-bottom:8px}
-.stat-value{font-size:24px;font-weight:700}
+.stat{padding:16px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(142,160,255,.12);margin-bottom:12px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.03)}
+.stat-label{font-family:'Press Start 2P','IBM Plex Mono',monospace;font-size:10px;line-height:1.55;letter-spacing:.08em;text-transform:uppercase;color:#92a3ff;margin-bottom:8px}
+.stat-value{font-size:20px;font-weight:700;line-height:1.4}
 .stat-sub{font-size:13px;color:#b8c4f5;line-height:1.6;margin-top:6px}
-.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.grid{display:grid;grid-template-columns:1.18fr .82fr;gap:18px}
 .section{padding:20px}
 .section h2{font-size:18px;margin-bottom:14px}
 .hub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.node{padding:14px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(142,160,255,.12)}
-.node strong{display:block;font-size:15px;margin-bottom:4px}
-.node p{font-size:13px;color:#b8c4f5;line-height:1.55}
+.node{padding:14px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(142,160,255,.12);position:relative;overflow:hidden}
+.node::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 0 48%, rgba(255,255,255,.06) 48% 52%, transparent 52% 100%);opacity:.65}
+.node strong{display:block;font-size:15px;margin-bottom:4px;position:relative;z-index:1}
+.node p{font-size:13px;color:#b8c4f5;line-height:1.55;position:relative;z-index:1}
 .room-list{display:flex;flex-direction:column;gap:10px}
-.room{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(142,160,255,.12);text-decoration:none;color:inherit}
+.room{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(142,160,255,.12);text-decoration:none;color:inherit;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
 .room span{font-size:13px;color:#b8c4f5}
-.room code{font-family:'IBM Plex Mono',monospace;color:#97a8ff}
-@media (max-width: 900px){.hero,.grid{grid-template-columns:1fr}h1{font-size:34px}}
+.room code{font-family:'Press Start 2P','IBM Plex Mono',monospace;color:#97a8ff;font-size:9px;line-height:1.4}
+.hub-map{margin-top:18px;padding:18px;border-radius:18px;background:
+  radial-gradient(circle at center, rgba(124,140,255,.12), transparent 55%),
+  linear-gradient(180deg, rgba(245,220,158,.88), rgba(210,180,120,.88));
+  border:1px solid rgba(142,160,255,.12);position:relative;overflow:hidden}
+.hub-map::before{content:'';position:absolute;inset:18px;border-radius:16px;background:
+  linear-gradient(90deg, transparent 0 16.5%, rgba(94,71,34,.26) 16.5% 22%, transparent 22% 44%, rgba(94,71,34,.26) 44% 56%, transparent 56% 78%, rgba(94,71,34,.26) 78% 83.5%, transparent 83.5% 100%),
+  linear-gradient(180deg, transparent 0 16.5%, rgba(94,71,34,.26) 16.5% 22%, transparent 22% 44%, rgba(94,71,34,.26) 44% 56%, transparent 56% 78%, rgba(94,71,34,.26) 78% 83.5%, transparent 83.5% 100%),
+  linear-gradient(180deg, rgba(94,71,34,.08), rgba(255,255,255,.04));
+  pointer-events:none;opacity:.92}
+.hub-map::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,.10), transparent 26%);pointer-events:none}
+.hub-roads{position:absolute;inset:18px;pointer-events:none;z-index:0}
+.route{position:absolute;background:linear-gradient(180deg,#9f7e46,#6f5021);box-shadow:0 0 0 3px rgba(255,248,210,.16);border-radius:999px;overflow:hidden;animation:roadPulse 3.8s ease-in-out infinite}
+.route::after{content:'';position:absolute;inset:4px;background:repeating-linear-gradient(90deg, rgba(255,255,255,.25) 0 8px, transparent 8px 18px);border-radius:inherit;opacity:.46}
+.route .walker{position:absolute;width:12px;height:12px;border-radius:4px;background:linear-gradient(180deg,#fff8cb,#f7c948);border:2px solid #48370e;box-shadow:0 0 0 3px rgba(255,248,210,.12), 0 0 12px rgba(255,255,255,.18)}
+.route.up .walker,.route.down .walker{left:50%;transform:translateX(-50%);animation:walkVertical 2.8s linear infinite}
+.route.left .walker,.route.right .walker{top:50%;transform:translateY(-50%);animation:walkHorizontal 3s linear infinite}
+.route.up .walker{top:-8px}
+.route.down .walker{bottom:-8px;animation-direction:reverse}
+.route.left .walker{left:-8px}
+.route.right .walker{right:-8px;animation-direction:reverse}
+.route.up{left:50%;top:14%;transform:translateX(-50%);width:18px;height:26%}
+.route.down{left:50%;bottom:14%;transform:translateX(-50%);width:18px;height:26%}
+.route.left{top:50%;left:14%;transform:translateY(-50%);width:26%;height:18px}
+.route.right{top:50%;right:14%;transform:translateY(-50%);width:26%;height:18px}
+.hub-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:stretch}
+.tile{min-height:112px;border-radius:16px;border:2px solid;padding:12px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(255,255,255,.06);box-shadow:0 8px 18px rgba(0,0,0,.12);position:relative;overflow:hidden}
+.tile::before{content:'';position:absolute;left:12px;right:12px;top:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.16)}
+.tile::after{content:'';position:absolute;inset:8px;border-radius:12px;border:1px solid rgba(255,255,255,.18);pointer-events:none}
+.tile .name{font-size:15px;font-weight:700;letter-spacing:.04em;position:relative;z-index:1}
+.tile .sub{font-size:11px;font-family:'Press Start 2P','IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;opacity:.84;line-height:1.5;position:relative;z-index:1}
+.sprite{position:absolute;right:10px;top:10px;z-index:2;width:28px;height:28px;border-radius:8px;border:2px solid rgba(20,20,30,.78);box-shadow:0 6px 14px rgba(0,0,0,.18), inset 0 0 0 1px rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:'Press Start 2P','IBM Plex Mono',monospace;font-size:8px;line-height:1;background:#fff;image-rendering:pixelated;animation:spriteBob 1.8s ease-in-out infinite}
+.sprite::before{content:'';position:absolute;inset:4px;border-radius:5px;background:repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 3px, transparent 3px 6px), linear-gradient(180deg, rgba(0,0,0,.12), rgba(255,255,255,.18));opacity:.8}
+.sprite span{position:relative;z-index:1;color:#142031;text-shadow:0 1px 0 rgba(255,255,255,.3)}
+.tile.empty{border-style:dashed;background:rgba(255,255,255,.03);color:#95a0bc}
+.tile.hq{grid-column:2;grid-row:2;min-height:164px;background:linear-gradient(180deg,#efe6ff,#d8c8ff);color:#1b1230;border-color:#7757b7;animation:hqPulse 2.8s ease-in-out infinite}
+.tile.h2{grid-column:2;grid-row:1;background:linear-gradient(180deg,#d8f1d2,#bfe3b5);color:#17311a;border-color:#4f7f4d;animation:floatTile 6s ease-in-out infinite}
+.tile.pro{grid-column:1;grid-row:2;background:linear-gradient(180deg,#dbeaf8,#bcd7ef);color:#173044;border-color:#4c6f93;animation:floatTile 6.4s ease-in-out infinite}
+.tile.terra{grid-column:3;grid-row:2;background:linear-gradient(180deg,#f8e1be,#f1cc9d);color:#4a2c08;border-color:#a56a2a;animation:floatTile 6.8s ease-in-out infinite}
+.tile.nw{grid-column:1;grid-row:1}
+.tile.ne{grid-column:3;grid-row:1}
+.tile.sw{grid-column:1;grid-row:3}
+.tile.s{grid-column:2;grid-row:3}
+.tile.se{grid-column:3;grid-row:3}
+.tile .agents{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:1}
+.chip{display:inline-flex;align-items:center;justify-content:center;min-width:72px;padding:7px 10px;border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;background:rgba(255,255,255,.84);border:1px solid rgba(0,0,0,.12);box-shadow:0 3px 8px rgba(0,0,0,.08)}
+.tile.empty .chip{background:rgba(255,255,255,.45)}
+@keyframes hqPulse{0%,100%{box-shadow:0 0 0 0 rgba(125,90,210,.18), 0 12px 20px rgba(0,0,0,.18)}50%{box-shadow:0 0 0 10px rgba(125,90,210,.06), 0 16px 26px rgba(0,0,0,.22)}}
+@keyframes floatTile{0%,100%{transform:translateY(0)}50%{transform:translateY(-1px)}}
+@keyframes roadPulse{0%,100%{opacity:.80}50%{opacity:1}}
+@keyframes spriteBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@keyframes walkVertical{0%{top:-8px}100%{top:calc(100% - 4px)}}
+@keyframes walkHorizontal{0%{left:-8px}100%{left:calc(100% - 4px)}}
+@media (max-width: 960px){.hero,.grid{grid-template-columns:1fr}h1{font-size:34px}.hub-grid{grid-template-columns:1fr 1fr}.tile.hq{grid-column:1 / -1;grid-row:auto}.tile.h2,.tile.pro,.tile.terra,.tile.nw,.tile.ne,.tile.sw,.tile.s,.tile.se{grid-column:auto;grid-row:auto}.route{display:none}}
 </style></head>
 <body>
 <div class="wrap">
   <div class="top">
     <div class="brand"><b>Mission Control</b> / Hermes</div>
-    <div class="pill">Shared hub + isolated rooms</div>
+    <div class="pill">Pokémon hub map · HQ center · company pods around it</div>
   </div>
 
   <div class="hero">
     <div class="card hero-left">
       <div class="eyebrow">Portfolio command center</div>
-      <h1>Run the shared agents from one place.</h1>
-      <p class="subtitle">Mission Control is the top-level entry point. Keep company work isolated in its own room, keep the native Hermes dashboard available, and use the shared layer for cross-company coordination.</p>
+      <h1>Run the shared agents from one hub.</h1>
+      <p class="subtitle">Mission Control is the top-level entry point. HQ sits in the middle. The three company rooms orbit it like a Pokémon hub town, and the remaining slots stay open for future companies.</p>
       <div class="actions">
         <a class="btn primary" href="/native">Open native dashboard</a>
         <a class="btn secondary" href="/rooms">View rooms</a>
@@ -322,12 +388,12 @@ h1{font-size:42px;line-height:1.02;margin-bottom:12px;letter-spacing:-.03em}
       <div class="stat">
         <div class="stat-label">Shared agents</div>
         <div class="stat-value">CEO · CFO · CTO</div>
-        <div class="stat-sub">These live above the company pods and coordinate portfolio-wide work.</div>
+        <div class="stat-sub">These live above the pods and coordinate the portfolio.</div>
       </div>
       <div class="stat">
         <div class="stat-label">Operating rule</div>
-        <div class="stat-value">Isolated rooms</div>
-        <div class="stat-sub">Company-specific agents should stay inside their own profile and workspace boundary.</div>
+        <div class="stat-value">One room per company</div>
+        <div class="stat-sub">Keep each brand isolated, with HQ as the shared center.</div>
       </div>
     </div>
   </div>
@@ -336,7 +402,7 @@ h1{font-size:42px;line-height:1.02;margin-bottom:12px;letter-spacing:-.03em}
     <div class="card section">
       <h2>Shared hub</h2>
       <div class="hub">
-        <div class="node"><strong>CFO</strong><p>Finance, cash flow, and portfolio visibility.</p></div>
+        <div class="node"><strong>CFO</strong><p>Cash flow, finance, and portfolio visibility.</p></div>
         <div class="node"><strong>CTO</strong><p>Infrastructure, tooling, and systems architecture.</p></div>
         <div class="node"><strong>Operator</strong><p>Execution, follow-through, and project coordination.</p></div>
         <div class="node"><strong>Research</strong><p>Discovery, content, and opportunity scouting.</p></div>
@@ -351,47 +417,150 @@ h1{font-size:42px;line-height:1.02;margin-bottom:12px;letter-spacing:-.03em}
       </div>
     </div>
   </div>
+
+  <div class="card section hub-map">
+    <h2>Top-down hub map</h2>
+    <div class="hub-roads">
+      <span class="route up"><span class="walker"></span></span>
+      <span class="route left"><span class="walker"></span></span>
+      <span class="route right"><span class="walker"></span></span>
+      <span class="route down"><span class="walker"></span></span>
+    </div>
+    <div class="hub-grid">
+      <div class="tile empty nw"><div><div class="name">EMPTY SLOT</div><div class="sub">future company</div></div><div class="agents"><span class="chip">LOCKED</span><span class="chip">FUTURE</span></div></div>
+      <div class="tile h2"><div class="sprite"><span>H2</span></div><div><div class="name">H2 WADERS</div><div class="sub">swamp zone</div></div><div class="agents"><span class="chip">pod</span><span class="chip">route → HQ</span></div></div>
+      <div class="tile empty ne"><div><div class="name">EMPTY SLOT</div><div class="sub">future company</div></div><div class="agents"><span class="chip">LOCKED</span><span class="chip">FUTURE</span></div></div>
+      <div class="tile pro"><div class="sprite"><span>PF</span></div><div><div class="name">PRO FULFILL</div><div class="sub">warehouse zone</div></div><div class="agents"><span class="chip">pod</span><span class="chip">route → HQ</span></div></div>
+      <div class="tile hq"><div class="sprite"><span>HQ</span></div><div><div class="name">HQ ROOM</div><div class="sub">all agents report here</div></div><div class="agents"><span class="chip">CEO</span><span class="chip">CTO</span><span class="chip">CFO</span><span class="chip">OPS</span><span class="chip">CONTENT</span><span class="chip">RESEARCH</span><span class="chip">SALES</span><span class="chip">SUPPORT</span></div></div>
+      <div class="tile terra"><div class="sprite"><span>TT</span></div><div><div class="name">TERACHE TIRES</div><div class="sub">garage zone</div></div><div class="agents"><span class="chip">pod</span><span class="chip">route → HQ</span></div></div>
+      <div class="tile empty sw"><div><div class="name">EMPTY SLOT</div><div class="sub">future company</div></div><div class="agents"><span class="chip">LOCKED</span><span class="chip">FUTURE</span></div></div>
+      <div class="tile empty s"><div><div class="name">EMPTY SLOT</div><div class="sub">future company</div></div><div class="agents"><span class="chip">LOCKED</span><span class="chip">FUTURE</span></div></div>
+      <div class="tile empty se"><div><div class="name">EMPTY SLOT</div><div class="sub">future company</div></div><div class="agents"><span class="chip">LOCKED</span><span class="chip">FUTURE</span></div></div>
+    </div>
+  </div>
 </div>
 </body></html>"""
 
 
 def _room_meta(room_key: str) -> tuple[str, str, str]:
     rooms = {
-        "h2waders": ("H2 Waders", "Waitlist-phase brand room", "Breathable mud waders · isolated company pod"),
-        "pro-fulfill": ("Pro Fulfill", "Operations room", "Fulfillment and logistics coordination"),
-        "terache-tires": ("Terache Tires", "Commerce room", "Product, sales, and growth work"),
+        "h2waders": ("H2 Waders", "Waitlist-phase brand room", "Top-down company pod with a muddy swamp feel. All routes point back to HQ."),
+        "pro-fulfill": ("Pro Fulfill", "Operations room", "Top-down company pod for logistics and execution. All routes point back to HQ."),
+        "terache-tires": ("Terache Tires", "Commerce room", "Top-down company pod for tire and auto work. All routes point back to HQ."),
     }
     return rooms.get(room_key, (room_key.replace("-", " ").title(), "Company room", "Isolated workspace"))
 
 
 def _room_html(room_key: str) -> str:
     title, subtitle, detail = _room_meta(room_key)
+    board = {
+        "h2waders": ["CEO", "Ops", "Research", "Content"],
+        "pro-fulfill": ["Ops", "Inventory", "Support", "Sales"],
+        "terache-tires": ["Sales", "Ops", "Support", "Growth"],
+    }.get(room_key, ["Agent 1", "Agent 2", "Agent 3", "Agent 4"])
+    chips = "".join(f'<span class="chip">{_html_escape(agent)}</span>' for agent in board)
     return f"""<!DOCTYPE html>
 <html lang=\"en\"><head>
 <meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">
 <title>{_html_escape(title)} — Mission Control</title>
 <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
 <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
-<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap\" rel=\"stylesheet\">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-*{{box-sizing:border-box;margin:0;padding:0}} body{{background:#090d18;color:#e5ebff;font-family:'IBM Plex Sans',sans-serif;min-height:100vh}}
-.wrap{{max-width:980px;margin:0 auto;padding:28px 20px 40px}} .card{{background:rgba(14,19,37,.96);border:1px solid rgba(142,160,255,.18);border-radius:18px;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.35)}}
-.top{{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:18px}} .brand{{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8ea0ff}}
-h1{{font-size:36px;line-height:1.05;margin-bottom:10px}} p{{color:#b8c4f5;line-height:1.7;margin-bottom:14px}} .meta{{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}} .pill{{padding:8px 12px;border-radius:999px;background:rgba(124,140,255,.12);border:1px solid rgba(124,140,255,.18);font-family:'IBM Plex Mono',monospace;font-size:12px}}
-.actions{{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}} a{{color:inherit;text-decoration:none}} .btn{{padding:11px 14px;border-radius:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600}} .primary{{background:#7c8cff;color:#07101f}} .secondary{{border:1px solid rgba(142,160,255,.25);background:rgba(255,255,255,.02)}}
-</style></head><body><div class=\"wrap\"><div class=\"top\"><div class=\"brand\">Mission Control / Room</div><a class=\"btn secondary\" href=\"/\">← Back to Mission Control</a></div><div class=\"card\"><h1>{_html_escape(title)}</h1><p>{_html_escape(subtitle)}</p><p>{_html_escape(detail)}</p><div class=\"meta\"><div class=\"pill\">Room key: {_html_escape(room_key)}</div><div class=\"pill\">Isolation: enabled</div><div class=\"pill\">Native dashboard: /native</div></div><div class=\"actions\"><a class=\"btn primary\" href=\"/native\">Open native dashboard</a><a class=\"btn secondary\" href=\"/rooms\">All rooms</a></div></div></div></body></html>"""
-
+*{{box-sizing:border-box;margin:0;padding:0}}
+body{{background:
+  radial-gradient(circle at 50% 0%, rgba(124,140,255,.16), transparent 30%),
+  radial-gradient(circle at 15% 22%, rgba(135,255,196,.08), transparent 18%),
+  linear-gradient(180deg,#0a1020 0%, #0c1430 45%, #09101d 100%);
+  color:#e5ebff;font-family:'IBM Plex Sans',sans-serif;min-height:100vh;position:relative;overflow-x:hidden}}
+body::before{{content:'';position:fixed;inset:0;pointer-events:none;background:
+  repeating-linear-gradient(180deg, rgba(255,255,255,.03) 0 1px, transparent 1px 4px),
+  repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 1px, transparent 1px 52px);
+  opacity:.12;mix-blend-mode:screen}}
+.wrap{{max-width:960px;margin:0 auto;padding:28px 20px 40px}}
+.card{{background:linear-gradient(180deg,rgba(17,23,44,.98),rgba(10,14,26,.98));border:1px solid rgba(142,160,255,.18);border-radius:18px;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03)}}
+.top{{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:18px}} .brand{{font-family:'Press Start 2P','IBM Plex Mono',monospace;font-size:10px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;color:#8ea0ff}}
+.back{{font-family:'Press Start 2P','IBM Plex Mono',monospace;color:#97a8ff;text-decoration:none;font-size:9px;line-height:1.4}}
+h1{{font-size:36px;line-height:1.05;margin-bottom:10px;letter-spacing:-.03em}} p{{color:#b8c4f5;line-height:1.7;margin-bottom:14px}} .meta{{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}} .pill{{padding:8px 12px;border-radius:999px;background:rgba(124,140,255,.12);border:1px solid rgba(124,140,255,.18);font-family:'Press Start 2P','IBM Plex Mono',monospace;font-size:9px;line-height:1.4}}
+.actions{{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}} a{{color:inherit;text-decoration:none}} .btn{{padding:11px 14px;border-radius:12px;font-family:'Press Start 2P','IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}} .primary{{background:linear-gradient(180deg,#9fb0ff,#7488ff);color:#07101f}} .secondary{{border:1px solid rgba(142,160,255,.25);background:rgba(255,255,255,.02)}}
+.room-map{{margin-top:18px;padding:18px;border-radius:18px;background:
+  radial-gradient(circle at center, rgba(124,140,255,.10), transparent 52%),
+  linear-gradient(180deg, rgba(245,220,158,.88), rgba(210,180,120,.88));
+  border:1px solid rgba(142,160,255,.12);position:relative;overflow:hidden}}
+.room-map::before{{content:'';position:absolute;inset:18px;border-radius:16px;background:
+  linear-gradient(90deg, transparent 0 16.5%, rgba(94,71,34,.26) 16.5% 22%, transparent 22% 44%, rgba(94,71,34,.26) 44% 56%, transparent 56% 78%, rgba(94,71,34,.26) 78% 83.5%, transparent 83.5% 100%),
+  linear-gradient(180deg, transparent 0 16.5%, rgba(94,71,34,.26) 16.5% 22%, transparent 22% 44%, rgba(94,71,34,.26) 44% 56%, transparent 56% 78%, rgba(94,71,34,.26) 78% 83.5%, transparent 83.5% 100%),
+  linear-gradient(180deg, rgba(94,71,34,.08), rgba(255,255,255,.04));
+  pointer-events:none;opacity:.92}}
+.room-map::after{{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,.10), transparent 26%);pointer-events:none}}
+.room-roads{{position:absolute;inset:18px;pointer-events:none;z-index:0}}
+.route{{position:absolute;background:linear-gradient(180deg,#9f7e46,#6f5021);box-shadow:0 0 0 3px rgba(255,248,210,.16);border-radius:999px;overflow:hidden;animation:roadPulse 3.8s ease-in-out infinite}}
+.route::after{{content:'';position:absolute;inset:4px;background:repeating-linear-gradient(90deg, rgba(255,255,255,.25) 0 8px, transparent 8px 18px);border-radius:inherit;opacity:.46}}
+.route.up{{left:50%;top:14%;transform:translateX(-50%);width:18px;height:26%}}
+.route.down{{left:50%;bottom:14%;transform:translateX(-50%);width:18px;height:26%}}
+.route.left{{top:50%;left:14%;transform:translateY(-50%);width:26%;height:18px}}
+.route.right{{top:50%;right:14%;transform:translateY(-50%);width:26%;height:18px}}
+.room-grid{{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:stretch}}
+.tile{{min-height:120px;border-radius:16px;border:2px solid;padding:12px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(255,255,255,.06);box-shadow:0 8px 18px rgba(0,0,0,.12);position:relative;overflow:hidden}}
+.tile::before{{content:'';position:absolute;left:12px;right:12px;top:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.16)}}
+.tile::after{{content:'';position:absolute;inset:8px;border-radius:12px;border:1px solid rgba(255,255,255,.18);pointer-events:none}}
+.tile .name{{font-size:15px;font-weight:700;letter-spacing:.04em;position:relative;z-index:1}} .tile .sub{{font-size:11px;font-family:'Press Start 2P','IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;opacity:.84;line-height:1.5;position:relative;z-index:1}}
+.tile.hub{{grid-column:2;grid-row:2;min-height:170px;background:linear-gradient(180deg,#efe6ff,#d8c8ff);color:#1b1230;border-color:#7757b7;animation:hqPulse 2.8s ease-in-out infinite}}
+.tile.empty{{border-style:dashed;background:rgba(255,255,255,.03);color:#95a0bc}}
+.tile.h2{{grid-column:2;grid-row:1;background:linear-gradient(180deg,#d8f1d2,#bfe3b5);color:#17311a;border-color:#4f7f4d;animation:floatTile 6s ease-in-out infinite}}
+.tile.pro{{grid-column:1;grid-row:2;background:linear-gradient(180deg,#dbeaf8,#bcd7ef);color:#173044;border-color:#4c6f93;animation:floatTile 6.4s ease-in-out infinite}}
+.tile.terra{{grid-column:3;grid-row:2;background:linear-gradient(180deg,#f8e1be,#f1cc9d);color:#4a2c08;border-color:#a56a2a;animation:floatTile 6.8s ease-in-out infinite}}
+.tile.nw{{grid-column:1;grid-row:1}} .tile.ne{{grid-column:3;grid-row:1}} .tile.sw{{grid-column:1;grid-row:3}} .tile.s{{grid-column:2;grid-row:3}} .tile.se{{grid-column:3;grid-row:3}}
+.tile .agents{{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:1}}
+.chip{{display:inline-flex;align-items:center;justify-content:center;min-width:72px;padding:7px 10px;border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;background:rgba(255,255,255,.84);border:1px solid rgba(0,0,0,.12);box-shadow:0 3px 8px rgba(0,0,0,.08)}}
+.tile.empty .chip{{background:rgba(255,255,255,.45)}}
+@keyframes hqPulse{{0%,100%{{box-shadow:0 0 0 0 rgba(125,90,210,.18), 0 12px 20px rgba(0,0,0,.18)}}50%{{box-shadow:0 0 0 10px rgba(125,90,210,.06), 0 16px 26px rgba(0,0,0,.22)}}}}
+@keyframes floatTile{{0%,100%{{transform:translateY(0)}}50%{{transform:translateY(-1px)}}}}
+@keyframes roadPulse{{0%,100%{{opacity:.80}}50%{{opacity:1}}}}
+@media (max-width: 960px){{.room-grid{{grid-template-columns:1fr 1fr}}.tile.hub{{grid-column:1 / -1;grid-row:auto}}.tile.h2,.tile.pro,.tile.terra,.tile.nw,.tile.ne,.tile.sw,.tile.s,.tile.se{{grid-column:auto;grid-row:auto}}.route{{display:none}}}}
+</style></head><body>
+<div class=\"wrap\">
+  <div class=\"top\"><div class=\"brand\">Mission Control / Room</div><a class=\"back\" href=\"/\">← Back to Mission Control</a></div>
+  <div class=\"card\">
+    <h1>{_html_escape(title)}</h1>
+    <p>{_html_escape(subtitle)}</p>
+    <p>{_html_escape(detail)}</p>
+    <div class=\"meta\"><div class=\"pill\">Room key: {_html_escape(room_key)}</div><div class=\"pill\">Isolation: enabled</div><div class=\"pill\">Native dashboard: /native</div></div>
+    <div class=\"actions\"><a class=\"btn primary\" href=\"/native\">Open native dashboard</a><a class=\"btn secondary\" href=\"/rooms\">All rooms</a></div>
+    <div class=\"room-map\">
+      <h2 style=\"margin-bottom:14px;font-size:18px;\">Top-down room view</h2>
+      <div class=\"room-roads\">
+        <span class=\"route up\"><span class=\"walker\"></span></span>
+        <span class=\"route left\"><span class=\"walker\"></span></span>
+        <span class=\"route right\"><span class=\"walker\"></span></span>
+        <span class=\"route down\"><span class=\"walker\"></span></span>
+      </div>
+      <div class=\"room-grid\">
+        <div class=\"tile empty nw\"><div><div class=\"name\">EMPTY SLOT</div><div class=\"sub\">future company</div></div><div class=\"agents\"><span class=\"chip\">LOCKED</span></div></div>
+        <div class=\"tile h2\"><div class=\"sprite\"><span>{_html_escape(title[:2].upper())}</span></div><div><div class=\"name\">{_html_escape(title)}</div><div class=\"sub\">{_html_escape(subtitle)}</div></div><div class=\"agents\">{chips}</div></div>
+        <div class=\"tile empty ne\"><div><div class=\"name\">EMPTY SLOT</div><div class=\"sub\">future company</div></div><div class=\"agents\"><span class=\"chip\">LOCKED</span></div></div>
+        <div class=\"tile pro\"><div class=\"sprite\"><span>PF</span></div><div><div class=\"name\">PRO FULFILL</div><div class=\"sub\">warehouse zone</div></div><div class=\"agents\"><span class=\"chip\">route → HQ</span></div></div>
+        <div class=\"tile hub\"><div class=\"sprite\"><span>HQ</span></div><div><div class=\"name\">HQ ROOM</div><div class=\"sub\">all agents report here</div></div><div class=\"agents\"><span class=\"chip\">CEO</span><span class=\"chip\">CTO</span><span class=\"chip\">CFO</span><span class=\"chip\">OPS</span><span class=\"chip\">CONTENT</span><span class=\"chip\">RESEARCH</span><span class=\"chip\">SALES</span><span class=\"chip\">SUPPORT</span></div></div>
+        <div class=\"tile terra\"><div class=\"sprite\"><span>TT</span></div><div><div class=\"name\">TERACHE TIRES</div><div class=\"sub\">garage zone</div></div><div class=\"agents\"><span class=\"chip\">route → HQ</span></div></div>
+        <div class=\"tile empty sw\"><div><div class=\"name\">EMPTY SLOT</div><div class=\"sub\">future company</div></div><div class=\"agents\"><span class=\"chip\">LOCKED</span></div></div>
+        <div class=\"tile empty s\"><div><div class=\"name\">EMPTY SLOT</div><div class=\"sub\">future company</div></div><div class=\"agents\"><span class=\"chip\">LOCKED</span></div></div>
+        <div class=\"tile empty se\"><div><div class=\"name\">EMPTY SLOT</div><div class=\"sub\">future company</div></div><div class=\"agents\"><span class=\"chip\">LOCKED</span></div></div>
+      </div>
+    </div>
+  </div>
+</div></body></html>"""
 
 ROOMS_INDEX_HTML = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Rooms — Mission Control</title>
 <style>
 body{background:#0b1020;color:#e5ebff;font-family:system-ui,sans-serif;min-height:100vh;margin:0;padding:28px}
-.wrap{max-width:900px;margin:0 auto}
+.wrap{max-width:920px;margin:0 auto}
 .card{background:#12182a;border:1px solid rgba(142,160,255,.18);border-radius:18px;padding:22px;margin-bottom:14px}
-a{color:inherit;text-decoration:none}.room{display:block;padding:14px;border:1px solid rgba(142,160,255,.14);border-radius:14px;margin-top:10px}
-.muted{color:#b8c4f5}
-</style></head><body><div class="wrap"><div class="card"><h1>Rooms</h1><p class="muted">Each room is its own company pod. Shared agents live above them in Mission Control.</p><p><a href="/">← Back to Mission Control</a></p></div><div class="room"><strong><a href="/rooms/h2waders">H2 Waders</a></strong><div class="muted">Waitlist-phase brand room</div></div><div class="room"><strong><a href="/rooms/pro-fulfill">Pro Fulfill</a></strong><div class="muted">Operations room</div></div><div class="room"><strong><a href="/rooms/terache-tires">Terache Tires</a></strong><div class="muted">Commerce room</div></div></div></body></html>"""
+a{color:inherit;text-decoration:none}.room{display:block;padding:14px;border:1px solid rgba(142,160,255,.14);border-radius:14px;margin-top:10px;background:rgba(255,255,255,.03)}
+.muted{color:#b8c4f5;line-height:1.6}
+.back{display:inline-block;margin-top:8px;font-family:ui-monospace,monospace;color:#97a8ff}
+</style></head><body><div class="wrap"><div class="card"><h1>Rooms</h1><p class="muted">Each room is its own top-down company pod. HQ is the shared center. The room list starts with three companies and leaves space for more later.</p><a class="back" href="/">← Back to Mission Control</a></div><a class="room" href="/rooms/h2waders"><strong>H2 Waders</strong><div class="muted">Waitlist-phase brand room</div></a><a class="room" href="/rooms/pro-fulfill"><strong>Pro Fulfill</strong><div class="muted">Operations room</div></a><a class="room" href="/rooms/terache-tires"><strong>Terache Tires</strong><div class="muted">Commerce room</div></a></div></body></html>"""
 
 
 MISSION_CONTROL_OVERLAY_SCRIPT = """<script>
