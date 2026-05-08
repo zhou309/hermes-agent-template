@@ -394,6 +394,29 @@ a{color:inherit;text-decoration:none}.room{display:block;padding:14px;border:1px
 </style></head><body><div class="wrap"><div class="card"><h1>Rooms</h1><p class="muted">Each room is its own company pod. Shared agents live above them in Mission Control.</p><p><a href="/">← Back to Mission Control</a></p></div><div class="room"><strong><a href="/rooms/h2waders">H2 Waders</a></strong><div class="muted">Waitlist-phase brand room</div></div><div class="room"><strong><a href="/rooms/pro-fulfill">Pro Fulfill</a></strong><div class="muted">Operations room</div></div><div class="room"><strong><a href="/rooms/terache-tires">Terache Tires</a></strong><div class="muted">Commerce room</div></div></div></body></html>"""
 
 
+MISSION_CONTROL_OVERLAY_SCRIPT = """<script>
+(function(){
+  try {
+    if (document.getElementById('mission-control-link')) return;
+    var btn = document.createElement('a');
+    btn.id = 'mission-control-link';
+    btn.href = '/';
+    btn.textContent = 'Mission Control';
+    btn.style.cssText = 'position:fixed;right:18px;bottom:18px;z-index:2147483647;padding:12px 16px;border-radius:999px;background:#7c8cff;color:#07101f;font:600 12px/1 "IBM Plex Mono",monospace;text-decoration:none;box-shadow:0 12px 30px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.18)';
+    document.body.appendChild(btn);
+  } catch (e) {}
+})();
+</script>"""
+
+
+def _inject_mission_control_link(html: str) -> str:
+    if 'id="mission-control-link"' in html:
+        return html
+    if re.search(r'<body\b[^>]*>', html, flags=re.I):
+        return re.sub(r'(<body\b[^>]*>)', r'\1' + MISSION_CONTROL_OVERLAY_SCRIPT, html, count=1, flags=re.I)
+    return html + MISSION_CONTROL_OVERLAY_SCRIPT
+
+
 def _html_escape(s: str) -> str:
     return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
              .replace('"', "&quot;").replace("'", "&#39;"))
@@ -705,8 +728,18 @@ async def _proxy_to_dashboard(request: Request) -> Response:
         and k.lower() not in ("content-encoding", "content-length")
     }
 
+    content = upstream.content
+    content_type = upstream.headers.get("content-type", "")
+    if "text/html" in content_type.lower():
+        try:
+            html = content.decode("utf-8", errors="replace")
+            html = _inject_mission_control_link(html)
+            content = html.encode("utf-8")
+        except Exception:
+            pass
+
     return Response(
-        content=upstream.content,
+        content=content,
         status_code=upstream.status_code,
         headers=resp_headers,
     )
