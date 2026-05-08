@@ -258,6 +258,142 @@ button:hover{background:#7b8fff;border-color:#7b8fff}
 </body></html>"""
 
 
+MISSION_CONTROL_HTML = """<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mission Control — Hermes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0b1020;color:#e5ebff;font-family:'IBM Plex Sans',sans-serif;min-height:100vh}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 40px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#8ea0ff}
+.brand b{color:#fff}
+.pill{border:1px solid rgba(142,160,255,.28);background:rgba(142,160,255,.08);padding:8px 12px;border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#cdd6ff}
+.hero{display:grid;grid-template-columns:1.5fr .9fr;gap:18px;margin-bottom:18px}
+.card{background:linear-gradient(180deg,rgba(14,19,37,.95),rgba(10,14,26,.96));border:1px solid rgba(142,160,255,.18);border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.hero-left{padding:28px}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#97a8ff;letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
+h1{font-size:42px;line-height:1.02;margin-bottom:12px;letter-spacing:-.03em}
+.subtitle{font-size:16px;line-height:1.7;color:#b8c4f5;max-width:58ch;margin-bottom:20px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 14px;border-radius:12px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.04em}
+.btn.primary{background:#7c8cff;color:#07101f}
+.btn.secondary{border:1px solid rgba(142,160,255,.3);background:rgba(255,255,255,.02);color:#e5ebff}
+.hero-right{padding:22px}
+.stat{padding:16px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(142,160,255,.12);margin-bottom:12px}
+.stat-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#92a3ff;margin-bottom:8px}
+.stat-value{font-size:24px;font-weight:700}
+.stat-sub{font-size:13px;color:#b8c4f5;line-height:1.6;margin-top:6px}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.section{padding:20px}
+.section h2{font-size:18px;margin-bottom:14px}
+.hub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.node{padding:14px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(142,160,255,.12)}
+.node strong{display:block;font-size:15px;margin-bottom:4px}
+.node p{font-size:13px;color:#b8c4f5;line-height:1.55}
+.room-list{display:flex;flex-direction:column;gap:10px}
+.room{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(142,160,255,.12);text-decoration:none;color:inherit}
+.room span{font-size:13px;color:#b8c4f5}
+.room code{font-family:'IBM Plex Mono',monospace;color:#97a8ff}
+@media (max-width: 900px){.hero,.grid{grid-template-columns:1fr}h1{font-size:34px}}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><b>Mission Control</b> / Hermes</div>
+    <div class="pill">Shared hub + isolated rooms</div>
+  </div>
+
+  <div class="hero">
+    <div class="card hero-left">
+      <div class="eyebrow">Portfolio command center</div>
+      <h1>Run the shared agents from one place.</h1>
+      <p class="subtitle">Mission Control is the top-level entry point. Keep company work isolated in its own room, keep the native Hermes dashboard available, and use the shared layer for cross-company coordination.</p>
+      <div class="actions">
+        <a class="btn primary" href="/native">Open native dashboard</a>
+        <a class="btn secondary" href="/rooms">View rooms</a>
+      </div>
+    </div>
+    <div class="card hero-right">
+      <div class="stat">
+        <div class="stat-label">Shared agents</div>
+        <div class="stat-value">CEO · CFO · CTO</div>
+        <div class="stat-sub">These live above the company pods and coordinate portfolio-wide work.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Operating rule</div>
+        <div class="stat-value">Isolated rooms</div>
+        <div class="stat-sub">Company-specific agents should stay inside their own profile and workspace boundary.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card section">
+      <h2>Shared hub</h2>
+      <div class="hub">
+        <div class="node"><strong>CFO</strong><p>Finance, cash flow, and portfolio visibility.</p></div>
+        <div class="node"><strong>CTO</strong><p>Infrastructure, tooling, and systems architecture.</p></div>
+        <div class="node"><strong>Operator</strong><p>Execution, follow-through, and project coordination.</p></div>
+        <div class="node"><strong>Research</strong><p>Discovery, content, and opportunity scouting.</p></div>
+      </div>
+    </div>
+    <div class="card section">
+      <h2>Rooms</h2>
+      <div class="room-list">
+        <a class="room" href="/rooms/h2waders"><div><strong>H2 Waders</strong><span>Waitlist-phase brand room</span></div><code>/rooms/h2waders</code></a>
+        <a class="room" href="/rooms/pro-fulfill"><div><strong>Pro Fulfill</strong><span>Company-specific workspace</span></div><code>/rooms/pro-fulfill</code></a>
+        <a class="room" href="/rooms/terache-tires"><div><strong>Terache Tires</strong><span>Company-specific workspace</span></div><code>/rooms/terache-tires</code></a>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>"""
+
+
+def _room_meta(room_key: str) -> tuple[str, str, str]:
+    rooms = {
+        "h2waders": ("H2 Waders", "Waitlist-phase brand room", "Breathable mud waders · isolated company pod"),
+        "pro-fulfill": ("Pro Fulfill", "Operations room", "Fulfillment and logistics coordination"),
+        "terache-tires": ("Terache Tires", "Commerce room", "Product, sales, and growth work"),
+    }
+    return rooms.get(room_key, (room_key.replace("-", " ").title(), "Company room", "Isolated workspace"))
+
+
+def _room_html(room_key: str) -> str:
+    title, subtitle, detail = _room_meta(room_key)
+    return f"""<!DOCTYPE html>
+<html lang=\"en\"><head>
+<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">
+<title>{_html_escape(title)} — Mission Control</title>
+<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
+<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap\" rel=\"stylesheet\">
+<style>
+*{{box-sizing:border-box;margin:0;padding:0}} body{{background:#090d18;color:#e5ebff;font-family:'IBM Plex Sans',sans-serif;min-height:100vh}}
+.wrap{{max-width:980px;margin:0 auto;padding:28px 20px 40px}} .card{{background:rgba(14,19,37,.96);border:1px solid rgba(142,160,255,.18);border-radius:18px;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.35)}}
+.top{{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:18px}} .brand{{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8ea0ff}}
+h1{{font-size:36px;line-height:1.05;margin-bottom:10px}} p{{color:#b8c4f5;line-height:1.7;margin-bottom:14px}} .meta{{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}} .pill{{padding:8px 12px;border-radius:999px;background:rgba(124,140,255,.12);border:1px solid rgba(124,140,255,.18);font-family:'IBM Plex Mono',monospace;font-size:12px}}
+.actions{{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}} a{{color:inherit;text-decoration:none}} .btn{{padding:11px 14px;border-radius:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600}} .primary{{background:#7c8cff;color:#07101f}} .secondary{{border:1px solid rgba(142,160,255,.25);background:rgba(255,255,255,.02)}}
+</style></head><body><div class=\"wrap\"><div class=\"top\"><div class=\"brand\">Mission Control / Room</div><a class=\"btn secondary\" href=\"/\">← Back to Mission Control</a></div><div class=\"card\"><h1>{_html_escape(title)}</h1><p>{_html_escape(subtitle)}</p><p>{_html_escape(detail)}</p><div class=\"meta\"><div class=\"pill\">Room key: {_html_escape(room_key)}</div><div class=\"pill\">Isolation: enabled</div><div class=\"pill\">Native dashboard: /native</div></div><div class=\"actions\"><a class=\"btn primary\" href=\"/native\">Open native dashboard</a><a class=\"btn secondary\" href=\"/rooms\">All rooms</a></div></div></div></body></html>"""
+
+
+ROOMS_INDEX_HTML = """<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rooms — Mission Control</title>
+<style>
+body{background:#0b1020;color:#e5ebff;font-family:system-ui,sans-serif;min-height:100vh;margin:0;padding:28px}
+.wrap{max-width:900px;margin:0 auto}
+.card{background:#12182a;border:1px solid rgba(142,160,255,.18);border-radius:18px;padding:22px;margin-bottom:14px}
+a{color:inherit;text-decoration:none}.room{display:block;padding:14px;border:1px solid rgba(142,160,255,.14);border-radius:14px;margin-top:10px}
+.muted{color:#b8c4f5}
+</style></head><body><div class="wrap"><div class="card"><h1>Rooms</h1><p class="muted">Each room is its own company pod. Shared agents live above them in Mission Control.</p><p><a href="/">← Back to Mission Control</a></p></div><div class="room"><strong><a href="/rooms/h2waders">H2 Waders</a></strong><div class="muted">Waitlist-phase brand room</div></div><div class="room"><strong><a href="/rooms/pro-fulfill">Pro Fulfill</a></strong><div class="muted">Operations room</div></div><div class="room"><strong><a href="/rooms/terache-tires">Terache Tires</a></strong><div class="muted">Commerce room</div></div></div></body></html>"""
+
+
 def _html_escape(s: str) -> str:
     return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
              .replace('"', "&quot;").replace("'", "&#39;"))
@@ -468,6 +604,40 @@ def get_http_client() -> httpx.AsyncClient:
 # ── Route handlers ────────────────────────────────────────────────────────────
 async def route_health(request: Request):
     return JSONResponse({"status": "ok", "gateway": gw.state})
+
+
+async def route_mission_control(request: Request) -> Response:
+    """GET /: render the Mission Control landing page."""
+    if err := guard(request):
+        return err
+    return HTMLResponse(MISSION_CONTROL_HTML)
+
+
+async def route_rooms_index(request: Request) -> Response:
+    """GET /rooms: render the room index."""
+    if err := guard(request):
+        return err
+    return HTMLResponse(ROOMS_INDEX_HTML)
+
+
+async def route_room(request: Request) -> Response:
+    """GET /rooms/{room_key}: render a company room view."""
+    if err := guard(request):
+        return err
+    room_key = request.path_params.get("room_key", "")
+    return HTMLResponse(_room_html(room_key))
+
+
+async def route_native(request: Request) -> Response:
+    """GET /native and /native/*: proxy to the native Hermes dashboard."""
+    if err := guard(request):
+        return err
+    native_path = request.url.path.removeprefix("/native") or "/"
+    proxied = request.scope.copy()
+    proxied["path"] = native_path
+    proxied["raw_path"] = native_path.encode()
+    request = Request(proxied, receive=request.receive)
+    return await _proxy_to_dashboard(request)
 
 
 # ── Reverse proxy → Hermes dashboard ──────────────────────────────────────────
@@ -707,8 +877,14 @@ routes = [
     WebSocketRoute("/api/ws",                   ws_proxy),
     WebSocketRoute("/api/events",               ws_proxy),
 
-    # Root + catch-all proxy to the Hermes dashboard subprocess.
-    Route("/",                                  route_root,          methods=ANY_METHOD),
+    # Mission Control and room views.
+    Route("/",                                  route_mission_control, methods=ANY_METHOD),
+    Route("/rooms",                             route_rooms_index,   methods=ANY_METHOD),
+    Route("/rooms/{room_key}",                  route_room,          methods=ANY_METHOD),
+    Route("/native",                            route_native,        methods=ANY_METHOD),
+    Route("/native/{path:path}",                route_native,        methods=ANY_METHOD),
+
+    # Catch-all proxy to the native Hermes dashboard.
     Route("/{path:path}",                       route_proxy,         methods=ANY_METHOD),
 ]
 

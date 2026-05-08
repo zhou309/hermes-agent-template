@@ -19,6 +19,8 @@ Deploy [Hermes Agent](https://github.com/NousResearch/hermes-agent) on [Railway]
 - **User Pairing** — approve or deny users who message your bot, revoke access anytime
 - **Basic Auth** — password-protected admin panel
 - **Reset Config** — one-click reset to start fresh
+- **Mission Control** — portfolio landing page with shared hub + isolated company rooms
+- **Native Dashboard Escape Hatch** — original Hermes dashboard preserved under `/native`
 
 ## Getting Started
 
